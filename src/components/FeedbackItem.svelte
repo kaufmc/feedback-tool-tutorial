@@ -1,7 +1,9 @@
 <script>
-
+	export let item;
 </script>
 
-<div>
-  FeedbackItem
-</div>
+{#if item}
+	<div>
+		{item.text}
+	</div>
+{/if}

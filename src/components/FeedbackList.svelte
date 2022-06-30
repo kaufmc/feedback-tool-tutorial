@@ -5,7 +5,6 @@
   console.log(feedback);
 </script>
 
-<div>
-  FeedbackList
-</div>
-<FeedbackItem />
+{#each feedback as item}
+  <FeedbackItem item = {item}/>
+{/each}
