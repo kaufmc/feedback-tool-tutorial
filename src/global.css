@@ -18,6 +18,7 @@ ul {
 }
 
 .container {
-  max-width: 768px;
+  max-width: 480px;
   margin: 100px  auto;
+  padding: 0 20px;
 }

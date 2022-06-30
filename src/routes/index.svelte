@@ -2,7 +2,9 @@
   import FeedbackBlock from "../components/FeedbackBlock.svelte";
 </script>
 
-<FeedbackBlock />
+<main class="container">
+  <FeedbackBlock />
+</main>
 
 <style>
 
