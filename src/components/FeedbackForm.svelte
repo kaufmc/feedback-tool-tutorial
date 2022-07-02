@@ -37,8 +37,10 @@
         text: text,
         rating: +rating,
       }
-      console.log(reviewData);
+
       dispatch('form-submitted', reviewData);
+
+      text = '';
     }
   }
 </script>
