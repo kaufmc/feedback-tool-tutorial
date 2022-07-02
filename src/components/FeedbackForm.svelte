@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+  import {v4 as uuid} from 'uuid';
 
 	import Card from './Card.svelte';
 	import Button from './Button.svelte';
@@ -30,7 +31,15 @@
 	}
 
 	function handleSubmit() {
-    dispatch('form-submitted', {'rating': rating, 'text': text});
+    if (text.trim().length >= MIN_INPUT_LENGTH) {
+      const reviewData = {
+        id: uuid(),
+        text: text,
+        rating: +rating,
+      }
+      console.log(reviewData);
+      dispatch('form-submitted', reviewData);
+    }
   }
 </script>
 

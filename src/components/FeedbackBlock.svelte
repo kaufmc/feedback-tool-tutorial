@@ -30,10 +30,8 @@
 
 	function handleFormSubmitted(event){
 		console.log('Form data:' + event.detail.text);
-		feedback =[{
-			'id': feedback.length, 
-			'rating': event.detail.rating, 
-			'text':event.detail.text},...feedback];
+		feedback =[
+			event.detail,...feedback];
 	}
 </script>
 
