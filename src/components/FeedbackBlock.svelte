@@ -27,10 +27,18 @@
 	function deleteItem(event){
 		feedback = feedback.filter((item) => item.id != event.detail );
 	}
+
+	function handleFormSubmitted(event){
+		console.log('Form data:' + event.detail.text);
+		feedback =[{
+			'id': feedback.length, 
+			'rating': event.detail.rating, 
+			'text':event.detail.text},...feedback];
+	}
 </script>
 
 <section>
-	<FeedbackForm />
-	<FeedbackStats count = {itemCount} average	={averageRating} />
-	<FeedbackList feedback = {feedback} on:delete-item = {deleteItem}/>
+	<FeedbackForm on:form-submitted={handleFormSubmitted} />
+	<FeedbackStats count={itemCount} average={averageRating} />
+	<FeedbackList {feedback} on:delete-item={deleteItem} />
 </section>

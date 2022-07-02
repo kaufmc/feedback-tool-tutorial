@@ -1,16 +1,21 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
 	import Card from './Card.svelte';
 	import Button from './Button.svelte';
+	import RatingSelector from './RatingSelector.svelte';
 
 	const MIN_INPUT_LENGTH = 10;
 	const INPUT_TOO_SHORT_MESSAGE = `Your feedback must be at least ${MIN_INPUT_LENGTH} characters.`;
 
+  const dispatch = createEventDispatcher();
+
 	let text = '';
+	let rating = 10;
 	let message = null;
 	let buttonDisabled = true;
 
 	function checkLength() {
-    console.log(text.length);
 		if (text.length >= MIN_INPUT_LENGTH) {
 			buttonDisabled = false;
 			message = null;
@@ -19,14 +24,22 @@
 			message = INPUT_TOO_SHORT_MESSAGE;
 		}
 	}
+
+	function handleRatingSelected(event) {
+		rating = event.detail;
+	}
+
+	function handleSubmit() {
+    dispatch('form-submitted', {'rating': rating, 'text': text});
+  }
 </script>
 
 <Card>
 	<header>
 		<h2>How would you rate us?</h2>
 	</header>
-	<form>
-		<!--Rating select-->
+	<form on:submit|preventDefault={handleSubmit}>
+		<RatingSelector on:rating-selected={handleRatingSelected} />
 		<div class="input-group">
 			<input
 				type="text"
