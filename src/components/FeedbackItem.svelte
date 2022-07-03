@@ -1,48 +1,51 @@
 <script>
 	export let item;
-  import {createEventDispatcher} from 'svelte';
+	import { createEventDispatcher } from 'svelte';
+  import { scale } from 'svelte/transition';
 	import Card from './Card.svelte';
 
-  const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
-  function handleDelete(itemId) {
-    dispatch('delete-item', itemId);
-  }
+	function handleDelete(itemId) {
+		dispatch('delete-item', itemId);
+	}
 </script>
 
-<Card>
-	<div class="num-display">{item.rating}</div>
-	<button class="close" on:click={() => handleDelete(item.id)}>╳</button>
-  <p class="text-display">{item.text}</p>
-  <div class="item-id">ID: {item.id}</div>
-</Card>
+<div transition:scale>
+  <Card>
+    <div class="num-display">{item.rating}</div>
+    <button class="close" on:click={() => handleDelete(item.id)}>╳</button>
+    <p class="text-display">{item.text}</p>
+    <div class="item-id">ID: {item.id}</div>
+  </Card>
+</div>
 
 <style>
-  .num-display{
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 50px;
-    height: 50px;
-    background: #ff6a95;
-    color: #ffffff;
-    border: 2px #ffd6e1 solid;
-    border-radius: 50%;
-    padding: 10px;
-    text-align: center;
-    font-size: 19px;
-  }
-  .close{
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    border: none;
-    background: none;
-  }
-  .item-id{
-    font-size: x-small;
-    color: lightgray;
-    margin-top: 10px;
-  }
+	.num-display {
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		width: 50px;
+		height: 50px;
+		background: #ff6a95;
+		color: #ffffff;
+		border: 2px #ffd6e1 solid;
+		border-radius: 50%;
+		padding: 10px;
+		text-align: center;
+		font-size: 19px;
+	}
+	.close {
+		position: absolute;
+		top: 10px;
+		right: 20px;
+		cursor: pointer;
+		border: none;
+		background: none;
+	}
+	.item-id {
+		font-size: x-small;
+		color: lightgray;
+		margin-top: 10px;
+	}
 </style>
