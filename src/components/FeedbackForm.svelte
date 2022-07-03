@@ -1,6 +1,6 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-  import {v4 as uuid} from 'uuid';
+	import {v4 as uuid} from 'uuid';
+	import { FeedbackStore } from '../stores/stores.js';
 
 	import Card from './Card.svelte';
 	import Button from './Button.svelte';
@@ -8,8 +8,6 @@
 
 	const MIN_INPUT_LENGTH = 10;
 	const INPUT_TOO_SHORT_MESSAGE = `Your feedback must be at least ${MIN_INPUT_LENGTH} characters.`;
-
-  const dispatch = createEventDispatcher();
 
 	let text = '';
 	let rating = 10;
@@ -38,7 +36,9 @@
         rating: +rating,
       }
 
-      dispatch('form-submitted', reviewData);
+			FeedbackStore.update((currentItem)=>{
+				return [reviewData, ...currentItem]
+			})
 
       text = '';
     }

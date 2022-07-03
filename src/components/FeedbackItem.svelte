@@ -1,23 +1,24 @@
 <script>
 	export let item;
-	import { createEventDispatcher } from 'svelte';
-  import { scale } from 'svelte/transition';
+
+	import { FeedbackStore } from '../stores/stores.js';
+	import { scale } from 'svelte/transition';
 	import Card from './Card.svelte';
 
-	const dispatch = createEventDispatcher();
-
 	function handleDelete(itemId) {
-		dispatch('delete-item', itemId);
+		FeedbackStore.update((currentItem) =>{
+			return currentItem.filter(item => item.id != itemId);
+		})
 	}
 </script>
 
 <div transition:scale>
-  <Card>
-    <div class="num-display">{item.rating}</div>
-    <button class="close" on:click={() => handleDelete(item.id)}>╳</button>
-    <p class="text-display">{item.text}</p>
-    <div class="item-id">ID: {item.id}</div>
-  </Card>
+	<Card>
+		<div class="num-display">{item.rating}</div>
+		<button class="close" on:click={() => handleDelete(item.id)}>╳</button>
+		<p class="text-display">{item.text}</p>
+		<div class="item-id">ID: {item.id}</div>
+	</Card>
 </div>
 
 <style>

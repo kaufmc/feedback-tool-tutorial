@@ -1,11 +1,14 @@
 <script>
-  export let count;
-  export let average;
+  import { FeedbackStore } from '../stores/stores.js';
+
+	$: itemCount = $FeedbackStore.length;
+	$: averageRating = ($FeedbackStore.reduce((sum,item) => sum + item.rating,0 )/itemCount).toFixed(1);
+
 </script>
 
 <div class="feedback-stats">
-  <div class="feedback-value">{count} Reviews</div>
-  <div class="feedback-value">Average Rating: {average}</div>
+  <div class="feedback-value">{itemCount} Reviews</div>
+  <div class="feedback-value">Average Rating: {averageRating}</div>
 </div>
 
 <style>
