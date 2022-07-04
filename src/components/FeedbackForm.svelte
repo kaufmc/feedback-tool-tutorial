@@ -1,5 +1,5 @@
 <script>
-	import {v4 as uuid} from 'uuid';
+	import { v4 as uuid } from 'uuid';
 	import { FeedbackStore } from '../stores/feedbackItmStore.js';
 
 	import Card from './Card.svelte';
@@ -7,6 +7,7 @@
 	import RatingSelector from './RatingSelector.svelte';
 
 	const MIN_INPUT_LENGTH = 10;
+	const INITIAL_VOTE_COUNT = 0;
 	const INPUT_TOO_SHORT_MESSAGE = `Your feedback must be at least ${MIN_INPUT_LENGTH} characters.`;
 
 	let text = '';
@@ -29,20 +30,21 @@
 	}
 
 	function handleSubmit() {
-    if (text.trim().length >= MIN_INPUT_LENGTH) {
-      const reviewData = {
-        id: uuid(),
-        text: text,
-        rating: +rating,
-      }
+		if (text.trim().length >= MIN_INPUT_LENGTH) {
+			const reviewData = {
+				id: uuid(),
+				text: text,
+				rating: +rating,
+				votes: INITIAL_VOTE_COUNT
+			};
 
-			FeedbackStore.update((currentItem)=>{
-				return [reviewData, ...currentItem]
-			})
+			FeedbackStore.update((currentItem) => {
+				return [reviewData, ...currentItem];
+			});
 
-      text = '';
-    }
-  }
+			text = '';
+		}
+	}
 </script>
 
 <Card>
@@ -85,6 +87,7 @@
 		padding: 8px 10px;
 		border-radius: 8px;
 		margin-top: 15px;
+		margin-bottom: 15px;
 	}
 	input {
 		flex-grow: 2;
@@ -95,7 +98,8 @@
 		outline: none;
 	}
 	.message {
-		padding-top: 10px;
+		padding-top: 5px;
+		font-size: small;
 		text-align: center;
 		color: rebeccapurple;
 	}
