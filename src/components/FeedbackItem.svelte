@@ -17,7 +17,7 @@
 <div transition:scale>
 	<Card>
 		<Rating>{item.rating}</Rating>
-		<Votes>{item.votes}</Votes>
+		<Votes votes = {item.votes}></Votes>
 		<button class="close" on:click={() => handleDelete(item.id)}>╳</button>
 		<p class="text-display">{item.text}</p>
 		<div class="item-id">ID: {item.id}</div>
