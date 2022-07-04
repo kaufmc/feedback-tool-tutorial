@@ -1,5 +1,5 @@
 <script>
-	import { FeedbackStore } from '../stores/stores.js';
+	import { FeedbackStore } from '../stores/feedbackItmStore.js';
 	import FeedbackItem from './FeedbackItem.svelte';
 	import { flip } from 'svelte/animate';
 </script>

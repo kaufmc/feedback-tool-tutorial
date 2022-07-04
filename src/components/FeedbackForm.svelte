@@ -1,6 +1,6 @@
 <script>
 	import {v4 as uuid} from 'uuid';
-	import { FeedbackStore } from '../stores/stores.js';
+	import { FeedbackStore } from '../stores/feedbackItmStore.js';
 
 	import Card from './Card.svelte';
 	import Button from './Button.svelte';

@@ -1,7 +1,7 @@
 <script>
 	export let item;
 
-	import { FeedbackStore } from '../stores/stores.js';
+	import { FeedbackStore } from '../stores/feedbackItmStore.js';
 	import { scale } from 'svelte/transition';
 	import Card from './Card.svelte';
 

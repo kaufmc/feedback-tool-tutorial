@@ -1,5 +1,5 @@
 <script>
-  import { FeedbackStore } from '../stores/stores.js';
+  import { FeedbackStore } from '../stores/feedbackItmStore.js';
 
 	$: itemCount = $FeedbackStore.length;
 	$: averageRating = ($FeedbackStore.reduce((sum,item) => sum + item.rating,0 )/itemCount).toFixed(1);
